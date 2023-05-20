@@ -1,0 +1,796 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+    integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ"
+    crossorigin="anonymous"
+  />
+
+  <link rel="stylesheet" href="navbar.css">
+
+
+    <style>
+      #gameContainer {
+        position: relative;
+        width: 70vw;
+        height: 70vh;
+        margin: 0 auto;
+        /* border: 2px solid #333; */
+        overflow: hidden;
+        border-radius: 1rem;
+        background-color: #333;
+        
+        
+      }
+
+      #player {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 30px;
+        text-shadow: 0 0 6px rgba(251, 205, 33, 0.8),
+               0 0 6px rgba(251, 205, 33, 0.8),
+               0 0 6px rgba(251, 205, 33,0.8),
+               0 0 6px rgba(251, 205, 33, 0.8);
+
+
+      }
+
+      .food {
+        position: absolute;
+        font-size: 30px;
+      }
+
+      .modal {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        z-index: 9999;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .modal-content {
+        position: relative;
+        width: 40rem;
+        height: 30rem;
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        text-align: center;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+      }
+
+      .modal-content h2 {
+        margin-top: 2rem;
+        font-size: 2.5rem;
+      }
+
+
+      .modal-content p {
+        font-size: 1.3rem;
+      }
+
+      .modal-content button {
+        margin-top: auto;
+        margin-bottom: 1rem;
+        padding: 1rem 2rem;
+        font-size: 1.5rem;
+        font-weight: 600;
+        background-color: #FBCD21;
+        color: black;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+
+      .modal-content button:hover {
+        background-color: #dbb220;
+      }
+
+      .modal-content p {
+        margin-bottom: 1rem;
+      }
+
+
+      .modal-content ul {
+        font-size: 3.5rem;
+      }
+
+
+      body {
+        margin: 0;
+        padding: 0;
+      }
+
+      h2{
+        text-align: center;
+        font-size: 3rem;
+        font-weight: 700;
+        margin: 2rem; 
+        margin-top: 8rem;
+      }
+
+      .navbar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100px;
+        background-color: #fff;
+        transition: background-color 0.5s ease; /* 背景色渐变过渡效果 */
+        z-index: 1;
+        /* box-shadow: 0 0.2rem 0.3rem rgba(0, 0, 0, 0.1); */
+      }
+
+
+      .button {
+        height: 3rem;
+        background-color: #333;
+        color: #fff;
+        border-radius: 10rem;
+        border: none;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.2s;
+        padding: 1.5rem 2rem;
+        font-size: 1rem;
+        font-weight: 500;
+        margin: 0 1rem;
+        /* box-shadow: 0 5px 5px 0 rgba(0, 0, 0, 0.3); */
+      }
+
+      .button:hover {
+        background-color: #555;
+      }
+
+      .center {
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        position: absolute;
+        top: 35%;
+        left: 10%;
+      }
+
+      .search-container {
+        width: 50rem;
+      }
+      .button-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin: 0 0 8rem 0;
+      }
+
+      .form-control {
+        text-indent: 1rem;
+      }
+
+ 
+
+
+
+      .search-container1 input[type="text"] {
+        width: 50rem;
+        height: 3rem; /* 调整搜索框的宽度 */
+        border-radius: 50px; /* 设置圆角 */
+        font-size: 1rem;
+   
+        box-shadow: 0.1rem 0.1rem 0.3rem rgba(0, 0, 0, 0.2); 
+ 
+      }
+
+      .search-container1 input[type="text"]::placeholder {
+        font-size: 1rem;
+      }
+
+
+
+      @media (max-width: 992px) {
+        .search-container {
+          display: none; /* 达到 768px 宽度以下时隐藏搜索框 */
+        }
+        .navbar-text {
+          display: none;
+        }
+        .nav-search{
+          display: none;
+        }
+      }
+
+      #timer{
+        position: absolute; 
+        right: 50%; 
+        top: 0;
+        color: #fff;
+      }
+
+
+
+
+    </style>
+  </head>
+
+  <body>
+
+    <div class="navbar navbar-expand-lg">
+        <div class="container-fluid">
+          <a
+            class="navbar-brand"
+            href="newhome.html"
+            style="margin-left: 1rem; font-size: 2rem"
+          >
+            Navbar</a
+          >
+  
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarNav"
+            aria-controls="navbarNav"
+            aria-expanded="false"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+  
+          <div class="nav-search search-container1 me-auto " style="margin-left: 10rem; position: relative;" >
+              <input
+              id="search-input"
+                type="text"
+                class="form-control"
+                placeholder="  Search..."
+              />
+              <button id="enter-button" style="border: none; background-color: transparent; position: absolute; right: 1.5rem; top: 50%; transform: translateY(-50%); color: #333;display: none;">Enter</button>
+            </div>
+   
+  
+  
+  
+  
+          <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+            
+            <ul class="navbar-nav ml-auto">
+              <li class="nav-item">
+                <a class="nav-link" href="player3.html">
+                  <div class="button" style="background-color: #fff; color: black; text-decoration: underline; font-weight: 600;">Get inspiration</div></a
+                >
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="myfridge.html">
+                  <div class="button">My fridge</div></a
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    
+    <div style="margin-top: 10rem"></div>
+
+    <div id="gameContainer">
+      <div id="player">🧑‍🌾</div>
+      <div id="timer"></div>
+    </div>
+
+    <div id="modal" class="modal">
+      <div class="modal-content" id="startContent">
+        <h2>Ingredients Collect Game</h2>
+        <p>🙌Your task is to collect ingredients for your meal.</p>
+        <p>✅Use your keyboard ⬆️➡️⬅️⬇️ to control the player.</p>
+        <p>✅You can collect at most <strong>3</strong> ingredients.</p>
+        <p>✅You only have <strong>10</strong> seconds.</p>
+        <P>🥳Good luck!</P>
+        <button id="startBtn">Start the game</button>
+      </div>
+    </div>
+
+    <div id="ingredientsModal" class="modal" style="display: none">
+      <div class="modal-content" id="ingredientContent">
+        <h2>The ingredients you've collected</h2>
+        <ul id="ingredientsList"></ul>
+        <button id="generateRecipeBtn">Generate my recipe</button>
+        <button id="restartBtn">Restart the game</button>
+      </div>
+    </div>
+
+
+    <div  id="recipesDiv"  style="display: none;">
+     <h2 id="recipeh2">Here are recipes with your collected ingredients!</h2>
+    <div class="card-container" id="recipeContainer">
+      <div class="card">
+        <div class="image-container">
+          <img src="lark.jpg" alt="pasta" />
+        </div>
+        <p>title veryv very veyr veyr very long title</p>
+      </div>
+
+      <div class="card">
+        <div class="image-container">
+          <img src="lark.jpg" alt="pasta" />
+        </div>
+        <p>title title</p>
+      </div>
+
+      <div class="card">
+        <div class="image-container">
+          <img src="lark.jpg" alt="pasta" />
+        </div>
+        <p>title veryv very veyr veyr very long titletitle veryv very veyr veyr very long titletitle veryv very veyr veyr very long titletitle veryv very veyr veyr very long titletitle veryv very veyr veyr very long title</p>
+      </div>
+    
+    </div>
+    <p style="text-align: center;">Didn't find the recipe you want? <a href="player3.html"> Start the game again!</a></p>
+    <div style="margin-bottom: 2rem;"></div>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <script>
+      const foods = [
+        "🥥",
+        "🥦",
+        "🥬",
+        "🥝",
+        "🥩",
+        "🥚",
+        "🍅",
+        "🍄",
+        "🥜",
+        "🥒",
+        "🌶",
+        "🫑",
+        "🥑",
+        "🧅",
+        "🥕",
+        "🌽",
+        "🥔",
+        "🍠",
+        "🍌",
+        "🍋",
+        "🫐",
+        "🍗",
+        "🍖",
+        "🍤",
+        "🍚",
+        "🧀",
+        "🌰",
+      ];
+
+      const ingredients = {
+
+        "🥥": "Coconut",
+        "🥦": "Broccoli",
+        "🥬": "Lettuce",
+        "🥝": "Kiwi",
+        "🥚": "Egg",
+        "🥩": "Steak",
+        "🍅": "Tomato",
+        "🍄": "Mushroom",
+        "🥜": "Peanut",
+        "🥒": "Cucumber",
+        "🌶": "Chili",
+        "🫑": "Bell+Pepper",
+        "🥑": "Avocado",
+        "🧅": "Onion",
+        "🥕": "Carrot",
+        "🌽": "Corn",
+        "🥔": "Potato",
+        "🍠": "Sweet+Potato",
+        "🍌": "Banana",
+        "🍋": "Lemon",
+        "🫐": "Blueberry",
+        "🍗": "Chicken",
+        "🍖": "Meat",
+        "🍤": "Shrimp",
+        "🍚": "Rice",
+        "🧀": "Cheese",
+        "🌰": "Nut",
+};
+
+      const player = document.getElementById("player");
+      const gameContainer = document.getElementById("gameContainer");
+      const foodItems = [];
+      const collectedIngredients = [];
+
+      function getRandomPosition() {
+        const x = Math.random() * (gameContainer.clientWidth - 40);
+        const y = Math.random() * (gameContainer.clientHeight - 40);
+        return { x, y };
+      }
+
+      function handleKeyDown(event) {
+        const { key } = event;
+
+        let playerTop = parseInt(window.getComputedStyle(player).top);
+        let playerLeft = parseInt(window.getComputedStyle(player).left);
+
+        let collidedFood = null;
+
+        for (const food of foodItems) {
+          if (checkCollision(player, food)) {
+            collidedFood = food;
+            break;
+          }
+        }
+
+        switch (key) {
+          case "ArrowUp":
+            if (playerTop > 0) {
+              player.style.top = `${playerTop - 10}px`;
+              if (collidedFood) {
+                collectIngredient(collidedFood);
+              }
+            }
+            break;
+          case "ArrowDown":
+            if (playerTop < gameContainer.clientHeight - 60) {
+              player.style.top = `${playerTop + 10}px`;
+              if (collidedFood) {
+                collectIngredient(collidedFood);
+              }
+            }
+            break;
+          case "ArrowLeft":
+            if (playerLeft > 0) {
+              player.style.left = `${playerLeft - 10}px`;
+              if (collidedFood) {
+                collectIngredient(collidedFood);
+              }
+            }
+            break;
+          case "ArrowRight":
+            if (playerLeft < gameContainer.clientWidth - 40) {
+              player.style.left = `${playerLeft + 10}px`;
+              if (collidedFood) {
+                collectIngredient(collidedFood);
+              }
+            }
+            break;
+        }
+      }
+
+      function collectIngredient(food) {
+        const ingredient = food.textContent;
+        collectedIngredients.push(ingredient);
+        if (collectedIngredients.length >= 3 || timeLeft === 0) {
+          clearInterval(gameTimer);
+          displayIngredientsModal();
+        }
+        food.remove();
+      }
+
+      function checkCollision(player, food) {
+        const playerRect = player.getBoundingClientRect();
+        const foodRect = food.getBoundingClientRect();
+
+        return (
+          playerRect.left < foodRect.right &&
+          playerRect.right > foodRect.left &&
+          playerRect.top < foodRect.bottom &&
+          playerRect.bottom > foodRect.top
+        );
+      }
+
+      // 生成食物元素并添加到游戏容器中
+      function generateFoodItems() {
+        for (let i = 0; i < foods.length; i++) {
+          const food = document.createElement("div");
+          food.classList.add("food");
+          food.textContent = foods[i];
+          const position = getRandomPosition();
+          food.style.left = `${position.x}px`;
+          food.style.top = `${position.y}px`;
+          gameContainer.appendChild(food);
+          foodItems.push(food);
+        }
+      }
+
+      // 监听键盘按下事件
+      document.addEventListener("keydown", handleKeyDown);
+
+      const startBtn = document.getElementById("startBtn");
+      const timer = document.getElementById("timer");
+      const generateRecipeBtn = document.getElementById("generateRecipeBtn");
+      const restartBtn = document.getElementById("restartBtn");
+
+      let timeLeft = 10;
+      let gameTimer;
+      let ingredientsList = document.getElementById('ingredientsList')
+      let finalIngredients
+
+      function displayIngredientsModal() {
+        // Display the ingredients modal
+        console.log(collectedIngredients)
+        ingredientsList.textContent = collectedIngredients.join(" ");
+        ingredientsModal.style.display = "flex";
+        player.style.display = "none"; // 隐藏玩家
+        console.log(ingredientsList)
+        finalIngredients = collectedIngredients.map((ingredient) => {
+          return ingredients[ingredient]; // 在字典中查找食材的对应值
+        });
+
+        console.log(finalIngredients);
+
+      }
+
+      function hideIngredientsModal() {
+        // Hide the ingredients modal
+        ingredientsModal.style.display = "none";
+        player.style.display = "block"; // 显示玩家
+      }
+
+
+
+      function updateTimer() {
+        timer.textContent = `Countdown
+: ${timeLeft}s`;
+
+        if (timeLeft === 0) {
+          clearInterval(gameTimer);
+          displayIngredientsModal();
+        }
+
+        timeLeft--;
+      }
+
+      function restartGame() {
+        collectedIngredients.length = 0; // 清空collectedIngredients
+        timeLeft = 10; // 重置倒计时时间
+        hideIngredientsModal();
+        gameTimer = setInterval(updateTimer, 1000);
+        // 清空上一轮游戏的食材
+        for (const food of foodItems) {
+          food.remove();
+        }
+        foodItems.length = 0;
+
+        generateFoodItems();
+      }
+
+      
+
+      function hideModal() {
+        modal.style.display = "none";
+      }
+
+      startBtn.addEventListener("click", () => {
+        generateFoodItems();
+        hideModal();
+        gameTimer = setInterval(updateTimer, 1000);
+      });
+
+      restartBtn.addEventListener("click", () => {
+        restartGame();
+      });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      generateRecipeBtn.addEventListener("click", () => {
+        generateRecipe(finalIngredients);
+        hideIngredientsModal();
+      });
+
+
+
+
+
+
+
+
+      async function generateRecipe(finalIngredients) {
+        myingredients=finalIngredients.join('%2C')
+        console.log(myingredients)
+
+      try {
+        const recipeData = await fetchRecipeData(myingredients);
+        displayRecipes(recipeData,recipeContainer);
+      } catch (error) {
+        console.error('Error fetching recipe data:', error);
+      }
+
+        recipesDiv.style.display = 'block';
+        recipeh2.scrollIntoView({ behavior: "smooth" });
+      }
+      
+      
+      
+      
+      
+      
+      
+      
+      
+
+
+
+
+
+async function fetchRecipeData(food) {
+  const url =
+    "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/findByIngredients?ingredients=" +
+    food+'&number=30';
+
+    console.log(url)
+  const options = {
+    method: "GET",
+    headers: {
+      "X-RapidAPI-Key": "0ea6aa2962mshf9120b6d8aad583p189182jsn145a03b81325",
+      "X-RapidAPI-Host": "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com",
+    },
+  };
+
+  try {
+    const response = await fetch(url, options);
+    const data = await response.json();
+    console.log(data)
+    return data;
+  } catch (error) {
+    console.error("API error:", error);
+    return null;
+  }
+}
+
+function displayRecipes(recipeData,divName) {
+  // 清空之前的内容
+  divName.innerHTML = "";
+
+  if (!recipeData) {
+    // 处理请求错误的情况
+    const errorElement = document.createElement("p");
+    errorElement.textContent = "Cannot retrive the recipes. Please try it again";
+    divName.appendChild(errorElement);
+    return;
+  }
+
+  // 创建 <div class="card-container"> 元素
+  const cardContainer = document.createElement("div");
+  cardContainer.className = "card-container";
+  divName.appendChild(cardContainer);
+
+  const recipes = recipeData
+  console.log(recipes)
+  console.log("recipes:",recipes)
+
+  recipes.forEach((recipe) => {
+    // 创建 <div class="card"> 元素
+    const card = document.createElement("div");
+    card.className = "card";
+    cardContainer.appendChild(card);
+
+    // 创建 <div class="image-container"> 元素
+    const imageContainer = document.createElement("div");
+    imageContainer.className = "image-container";
+    card.appendChild(imageContainer);
+
+    // 创建 <img> 元素
+    const image = document.createElement("img");
+    image.src = recipe.image;
+    image.alt = recipe.title;
+    imageContainer.appendChild(image);
+
+    // 创建 <p> 元素
+    const pElement = document.createElement("p");
+    pElement.textContent = recipe.title;
+    card.appendChild(pElement);
+
+    card.addEventListener("click", (event) => {
+        event.preventDefault();
+        window.open(`details.html?id=${recipe.id}`, "_blank");
+      });
+  });
+
+}
+
+
+
+
+
+
+
+      document.addEventListener('click', function(event) {
+  if (event.target !== startContent) {
+    modal.style.display='none'
+  }
+});
+
+document.addEventListener('click', function(event) {
+  if (event.target !== ingredientContent) {
+    ingredientsModal.style.display='none'
+  }
+});
+
+
+
+
+
+
+    </script>
+
+
+<script
+src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
+integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
+crossorigin="anonymous"
+></script>
+<script>
+    var searchInput = document.getElementById('search-input');
+var enterButton = document.getElementById('enter-button');
+
+searchInput.addEventListener('input', function() {
+if (searchInput.value.trim() !== '') {
+enterButton.style.display = 'block';
+} else {
+enterButton.style.display = 'none';
+}
+});
+
+
+enterButton.addEventListener('click',function(){
+  const keyword = searchInput.value;
+  const url = `searchresult.html?keyword=${encodeURIComponent(keyword)}`;
+  window.location.href = url;
+
+})
+
+
+</script>
+  </body>
+</html>

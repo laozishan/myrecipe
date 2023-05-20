@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Delicious Dish - 菜肴</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ"
+      crossorigin="anonymous"
+    />
+    <script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
+    <style>
+      /* CSS styles go here */
+
+
+      img {
+        max-width: 100%;
+        max-height: 37rem;
+        object-fit: cover;
+        border-radius: 1rem;
+      }
+
+      .rating {
+        color: #ff5733; /* Set star color to gold */
+        font-size: 24px; /* Adjust the size of stars */
+      }
+
+      .ingredients-container {
+        background-color: #f2f2f2; /* Light grey background color */
+        padding: 10px; /* Add some padding for spacing */
+        border-radius: 1rem;
+      }
+
+
+      .ingredients-container img{
+        border-radius: 0.5rem;
+        margin: 0 1rem 0 0;
+      }
+
+      .ingredients li {
+
+        padding-bottom: 5px; /* Add spacing between lines */
+        margin-bottom: 5px; /* Add spacing between lines */
+
+      }
+
+      .figure-container {
+        margin-bottom: 5rem;
+
+      }
+
+      .figure {
+        width: 15rem; /* Set initial width */
+        border-radius: 0.7rem;
+        margin: 0 1rem 0 1rem;
+       ; /* Add transition effect */
+      }
+
+
+      .tag {
+  display: inline-block;
+  padding: .5rem 1.5rem;
+  margin: .7rem .7rem .7rem 0;
+  background-color: rgba(251, 205, 33, 0.6);
+  color: black;
+  border-radius: 4px;
+}
+
+
+.card-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      .image-container img {
+        width: 100%;
+        height: 24rem;
+        object-fit: cover;
+      }
+
+      .card {
+        display: flex;
+        flex-direction: column;
+        width: 25rem;
+        height: 27rem;
+        margin: 2rem;
+        align-items: center;
+        justify-content: center;
+        background-color: #fff;
+        border: 1px solid #ddd;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0px 0px 10px #ddd;
+      }
+      .card p {
+        font-size: 1.2rem;
+        font-weight: 500;
+        margin: 0.5rem;
+        text-overflow: ellipsis;
+
+      }
+      .similar-item {
+        display: block;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.2s
+      }
+
+      .similar-item:hover{
+        transform: scale(1.01); /* Expand width on hover */
+        cursor: pointer;
+        color: rgb(0, 123, 255);
+      }
+
+      li{
+        margin: 1rem;
+      }
+
+      
+    </style>
+    <link rel="stylesheet" href="navbar.css">
+  </head>
+
+
+
+<div class="navbar navbar-expand-lg">
+  <div class="container-fluid">
+    <a
+      class="navbar-brand"
+      href="newhome.html"
+      style="margin-left: 1rem; font-size: 2rem"
+    >
+      Navbar</a
+    >
+
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarNav"
+      aria-controls="navbarNav"
+      aria-expanded="false"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="nav-search search-container1 me-auto " style="margin-left: 10rem; position: relative;" >
+        <input
+        id="search-input"
+          type="text"
+          class="form-control"
+          placeholder="  Search..."
+        />
+        <button id="enter-button" style="border: none; background-color: transparent; position: absolute; right: 1.5rem; top: 50%; transform: translateY(-50%); color: #333;display: none;">Enter</button>
+      </div>
+
+
+
+
+
+    <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+      
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="player3.html">
+            <div class="button">Get inspiration</div></a
+          >
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="myfridge.html">
+            <div class="button">My fridge</div></a
+          >
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div style="margin-top: 8rem"></div>
+    <div style="margin: 2rem 18rem;">
+    <header>
+      <h1 id="title">Delicious Dish</h1>
+      <div id="tags">
+      </div>
+
+      <p id="summary">
+      </p>
+      <div style="margin-top: 2rem"></div>
+    </header>
+
+    <main>
+      <img id="image"  />
+      <div style="margin-top: 2rem"></div>
+
+      <div  class="ingredients-container">
+        <h3>Ingredients:</h3>
+        <ul id="ingredients" class="ingredients">
+
+        </ul>
+      </div>
+
+      <div style="margin-top: 2rem"></div>
+      <h3>Preparation:</h3>
+      <ul id="steps">
+
+      </ul>
+      <div style="margin-top:2rem"></div>
+
+      <div class="ingredients-container">
+      <h3>You May Also Like:</h3>
+      <ul class="similar-container " id="similar">
+        <!-- <div class="similar-item">
+        <img class="figure" src="chicken.jpg" alt="Figure 1" />
+        <p>title title title</p>
+      </div>
+
+      <div class="similar-item">
+        <img class="figure" src="chicken.jpg" alt="Figure 1" />
+        <p>title title title</p>
+      </div>        
+      <div class="similar-item">
+        <img class="figure" src="chicken.jpg" alt="Figure 1" />
+        <p>title title title</p>
+      </div>
+        -->
+      </ul>
+    </div>
+    </main>
+
+
+  </div>
+
+  <script src="navbar.js"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
+      crossorigin="anonymous"
+    ></script>
+
+    <script>
+      const urlParams = new URLSearchParams(window.location.search);
+      const recipeId = urlParams.get("id");
+
+      async function getRecipeInformation(recipeId) {
+      const url = `https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/${recipeId}/information`;
+      const response = await fetch(url, {
+        method: "GET",
+        headers: {
+          "X-RapidAPI-Key": "0ea6aa2962mshf9120b6d8aad583p189182jsn145a03b81325",
+          "X-RapidAPI-Host": "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com",
+        },
+      });
+      const data = await response.json();
+      console.log(data)
+      return data;
+  }
+
+  async function fetchData() {
+    try {
+      const recipeData = await getRecipeInformation(recipeId);
+      
+      const ingredientsList = document.getElementById('ingredients');
+      const stepsList = document.getElementById('steps')
+      const title = document.getElementById('title')
+      const image=document.getElementById('image')
+      const summary = document.getElementById('summary')
+      const tagList = document.getElementById('tags')
+
+      recipeData.extendedIngredients.forEach(ingredient => {
+        const li = document.createElement('li');
+        li.textContent = `${ingredient.original}`;
+        ingredientsList.appendChild(li);
+      });
+
+
+      
+      recipeData.extendedIngredients.forEach(ingredient => {
+        const img = document.createElement('img');
+        img.src = `https://spoonacular.com/cdn/ingredients_100x100/${ingredient.image}`;
+        img.alt = ingredient.name;
+        img.style.display = 'inline-block';
+        ingredientsList.appendChild(img);
+      });
+
+
+      if(recipeData.analyzedInstructions.length !=0){
+      recipeData.analyzedInstructions[0].steps.forEach(step => {
+        const li = document.createElement('li');
+        li.textContent = `Step ${step.number}: ${step.step}`;
+        stepsList.appendChild(li);
+      });}
+
+      if(recipeData.cuisines){
+      recipeData.cuisines.forEach(cuisine => {
+        const span = document.createElement('span');
+        span.innerHTML = cuisine;
+        span.classList.add('tag')
+        tagList.appendChild(span);
+      });}
+
+
+      if (recipeData.diets){
+        recipeData.diets.forEach(cuisine => {
+        const span = document.createElement('span');
+        span.innerHTML = cuisine;
+        span.classList.add('tag')
+        tagList.appendChild(span);
+      });
+      }
+
+      title.textContent = recipeData.title;
+
+      image.src = recipeData.image;
+      image.alt = recipeData.title;
+
+      summary.innerHTML= recipeData.summary      
+    } catch (error) {
+      console.error(error);
+    }
+
+  }
+
+  fetchData();
+
+
+
+  async function getSimilarRecipe(recipeId) {
+      const url = `https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/${recipeId}/similar`;
+      const response = await fetch(url, {
+        method: "GET",
+        headers: {
+          "X-RapidAPI-Key": "0ea6aa2962mshf9120b6d8aad583p189182jsn145a03b81325",
+          "X-RapidAPI-Host": "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com",
+        },
+      });
+      const data = await response.json();
+      console.log(data)
+      return data;
+  }
+
+
+  async function fetchSimilar() {
+    try {
+      const recipeData = await getSimilarRecipe(recipeId);
+      const similarContainer = document.getElementById('similar');
+      console.log(recipeData)
+      recipeData.forEach(recipe => {
+          // 创建类似食谱项的HTML元素
+          const similarItem = document.createElement('div');
+          similarItem.className = 'similar-item';
+
+          // const image = document.createElement('img');
+          // image.className = 'figure';
+          // image.src = recipe.image;
+          // image.alt = recipe.title
+
+          const li = document.createElement('li');
+          li.textContent = recipe.title;
+
+          const recipeLink = document.createElement("a");
+          recipeLink.href = recipe.sourceUrl;
+          recipeLink.target = "_blank";
+          
+
+          // 将图像和标题元素添加到类似食谱项中
+          // similarItem.appendChild(image);
+          similarItem.appendChild(li);
+     
+          similarItem.appendChild(recipeLink);
+
+
+          similarItem.addEventListener("click", (event) => {
+        event.preventDefault();
+        window.open(`details.html?id=${recipe.id}`, "_blank");
+      });
+
+          // 将类似食谱项添加到similar容器中
+          similarContainer.appendChild(similarItem);})
+    } catch (error) {
+      console.error(error);
+    }
+
+  }
+
+fetchSimilar()
+
+
+
+
+
+    </script>
+  </body>
+</html>

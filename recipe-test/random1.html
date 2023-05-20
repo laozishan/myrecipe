@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
+      crossorigin="anonymous"
+    ></script>
+    <style>
+      body,
+      html {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+
+      .container1 {
+        position: relative;
+        height: 100%;
+      }
+
+      .left {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 40%;
+
+        background-color: gray;
+        bottom: 0;
+      }
+
+      .right {
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 60%;
+        background-color: white;
+        bottom: 0;
+      }
+
+      .tag {
+        display: inline-block;
+        background-color: #c9ffc1;
+        padding: 5px;
+        margin-right: 5px;
+        border: #000 1px;
+      }
+
+      .closeButton {
+        cursor: pointer;
+        color: #000;
+        font-weight: bold;
+        margin-left: 5px;
+        border: none;
+      }
+
+      .roulette-image {
+        position: absolute;
+
+        width: 400px;
+        height: 400px;
+        border-radius: 30px;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+      }
+
+      button {
+        position: relative;
+        margin-top: 50px;
+        padding: 20px 50px;
+        font-size: 24px;
+        font-weight: bold;
+        color: #fff;
+        background-color: #db3434;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease-out;
+      }
+
+      button:hover {
+        background-color: #bf2c2c;
+      }
+
+      button:focus {
+        outline: none;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container1">
+      <div class="left">
+        <div class="button-container">
+          <h2>Any keywords for your recipe?</h2>
+          <div class="input-group mb-3">
+            <input
+              type="text"
+              class="form-control"
+              id="inputText"
+              placeholder="e.g. vegetarian, dessert"
+            />
+            <button class="btn" id="confirmButton">Add</button>
+          </div>
+          <div id="tagList"></div>
+        </div>
+      </div>
+
+      <div class="right">
+        <button id="start-button">START</button>
+        <div class="roulette-container">
+          <div class="roulette-image"></div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      const inputText = document.getElementById("inputText");
+      const confirmButton = document.getElementById("confirmButton");
+      const tagList = document.getElementById("tagList");
+
+      // 监听确认按钮的点击事件
+      confirmButton.addEventListener("click", () => {
+        // 获取用户输入的字符串
+        const inputValue = inputText.value.trim();
+
+        if (inputValue !== "") {
+          // 创建标签元素
+          const tag = document.createElement("div");
+          tag.classList.add("tag");
+          tag.innerHTML = `${inputValue} <button class="closeButton">x</button>`;
+
+          // 添加标签到标签列表
+          tagList.appendChild(tag);
+
+          // 清空输入框
+          inputText.value = "";
+        }
+      });
+
+      // 监听标签列表的点击事件，以处理关闭按钮的点击
+      tagList.addEventListener("click", (event) => {
+        if (event.target.classList.contains("closeButton")) {
+          // 移除对应的标签
+          event.target.parentNode.remove();
+        }
+      });
+
+      // 获取用户输入的标签列表
+      function getTagList() {
+        const tagElements = document.querySelectorAll(".tag");
+        const tagList = Array.from(tagElements).map((tag) =>
+          tag.firstChild.textContent.trim()
+        );
+        return tagList;
+      }
+
+      // Define an array of images to use in the roulette
+      const imageArray = [
+        "https://spoonacular.com/recipeImages/178467-312x231.jpg",
+        "https://spoonacular.com/recipeImages/159259-312x231.jpg",
+        "https://spoonacular.com/recipeImages/169246-312x231.jpg",
+        "https://spoonacular.com/recipeImages/284218-312x231.jpg",
+        "https://spoonacular.com/recipeImages/545958-312x231.jpg",
+        "https://spoonacular.com/recipeImages/30911-312x231.jpg",
+        "https://spoonacular.com/recipeImages/272539-312x231.jpg",
+        "https://spoonacular.com/recipeImages/275802-312x231.jpg",
+        "https://spoonacular.com/recipeImages/365949-312x231.jpg",
+        "https://spoonacular.com/recipeImages/385937-312x231.jpg",
+        "https://spoonacular.com/recipeImages/1001275-312x231.jpg",
+        "https://spoonacular.com/recipeImages/25217-312x231.jpg",
+        "https://spoonacular.com/recipeImages/103802-312x231.png",
+        "https://spoonacular.com/recipeImages/164985-312x231.jpg",
+        "https://spoonacular.com/recipeImages/700798-312x231.jpg",
+        "https://spoonacular.com/recipeImages/23692-312x231.jpg",
+        "https://spoonacular.com/recipeImages/25271-312x231.jpg",
+        "https://spoonacular.com/recipeImages/265793-312x231.jpg",
+        "https://spoonacular.com/recipeImages/276184-312x231.jpg",
+        "https://spoonacular.com/recipeImages/412767-312x231.jpg",
+      ];
+
+      // Select DOM elements
+      const rouletteImage = document.querySelector(".roulette-image");
+      const startButton = document.querySelector("#start-button");
+      // Define an array of images to use in the roulette
+
+      // Define a function to choose a random image from the array
+      function chooseRandomImage() {
+        const randomIndex = Math.floor(Math.random() * imageArray.length);
+        return imageArray[randomIndex];
+      }
+
+      // Define a variable to store the interval ID
+      let intervalId;
+      let isRunning = false;
+
+      // Define a function to toggle the roulette state
+      function toggleRoulette() {
+        if (isRunning) {
+          // Stop the roulette
+          startButton.textContent = "START";
+          clearInterval(intervalId);
+          isRunning = false;
+        } else {
+          // Start the roulette
+          startButton.textContent = "STOP";
+          // Clear the interval if it's already running
+          clearInterval(intervalId);
+          // Set an interval to change the image every 50 milliseconds
+          intervalId = setInterval(() => {
+            rouletteImage.style.backgroundImage = `url(${chooseRandomImage()})`;
+          }, 50);
+          isRunning = true;
+        }
+      }
+
+      // Add event listener to the start button
+      startButton.addEventListener("click", toggleRoulette);
+    </script>
+  </body>
+</html>

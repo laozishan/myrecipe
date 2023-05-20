@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="navbar.html">My Recipe</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="main.html">Plan My Meal</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="random.html">Random Recipe</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Step 1 choose your food -->
+
+    <div  id="step-1" style="margin-top: 4rem;">
+      <div class="button-container">
+        <h1>What would you like to eat today?  (1/4)</h1>
+      </div>
+      <div class="card-container">
+        <div class="card">
+          <p style="font-size: 80px">🍛</p>
+          <p>Rice</p>
+          <input
+            type="checkbox"
+            name="food"
+            value="rice"
+            class="card-checkbox"
+          />
+        </div>
+
+        <div class="card">
+          <p style="font-size: 80px">🥗</p>
+          <p>Salad</p>
+          <input
+            type="checkbox"
+            name="food"
+            value="salad"
+            class="card-checkbox"
+          />
+        </div>
+        <div class="card">
+          <p style="font-size: 80px">🍣</p>
+          <p>Sushi</p>
+          <input
+            type="checkbox"
+            name="food"
+            value="sushi"
+            class="card-checkbox"
+          />
+        </div>
+
+        <div class="card">
+          <p style="font-size: 80px">🌮</p>
+          <p>Tacos</p>
+          <input
+            type="checkbox"
+            name="food"
+            value="tacos"
+            class="card-checkbox"
+          />
+        </div>
+        <div class="card">
+          <p style="font-size: 80px">🥘</p>
+          <p>Soup</p>
+          <input
+            type="checkbox"
+            name="food"
+            value="soup"
+            class="card-checkbox"
+          />
+        </div>
+
+        <div class="card">
+          <p style="font-size: 80px">🍔</p>
+          <p>Burger</p>
+          <input
+            type="checkbox"
+            name="food"
+            value="burger"
+            class="card-checkbox"
+          />
+        </div>
+
+        <div class="card">
+          <p style="font-size: 80px">🍝</p>
+          <p>Pasta</p>
+          <input
+            type="checkbox"
+            name="food"
+            value="pasta"
+            class="card-checkbox"
+          />
+        </div>
+
+        <div class="card">
+          <p style="font-size: 80px">🍕</p>
+          <p>Pizza</p>
+          <input
+            type="checkbox"
+            name="food"
+            value="pizza"
+            class="card-checkbox"
+          />
+        </div>
+
+        <div class="card">
+          <p style="font-size: 80px">🍨</p>
+          <p>Dessert</p>
+          <input
+            type="checkbox"
+            name="food"
+            value="dessert"
+            class="card-checkbox"
+          />
+        </div>
+      </div>
+    </div>
+
+
+
+
+    <div class="step" id="step-2">
+        <div class="button-container" >
+          <h1>Any ingredients to use up in your fridge?   (2/4)</h1>
+        </div>
+        <div class="card-container" style="margin: 0 250px 0 250px;">
+          <div class="card4">
+            <p style="font-size: 40px">🥦</p>
+            <p>Broccoli</p>
+            <input
+              type="checkbox"
+              name="ingredient"
+              value="broccoli"
+              class="card-checkbox"
+            />
+          </div>
+  
+          <div class="card4">
+            <p style="font-size: 40px">🍆</p>
+            <p>Eggplant</p>
+            <input
+              type="checkbox"
+              name="ingredient"
+              value="eggplant"
+              class="card-checkbox"
+            />
+          </div>
+          <div class="card4">
+            <p style="font-size: 40px">🥔</p>
+            <p>Potato</p>
+            <input
+              type="checkbox"
+              name="ingredient"
+              value="potato"
+              class="card-checkbox"
+            />
+          </div>
+  
+          <div class="card4">
+              <p style="font-size: 40px">🍅</p>
+              <p>Tomato</p>
+              <input
+                type="checkbox"
+                name="ingredient"
+                value="tomato"
+                class="card-checkbox"
+              />
+            </div>
+  
+  
+  
+          <div class="card4">
+            <p style="font-size: 40px">🥕</p>
+            <p>Carrot</p>
+            <input
+              type="checkbox"
+              name="ingredient"
+              value="carrot"
+              class="card-checkbox"
+            />
+          </div>
+          <div class="card4">
+            <p style="font-size: 40px">🌽</p>
+            <p>Corn</p>
+            <input
+              type="checkbox"
+              name="ingredient"
+              value="corn"
+              class="card-checkbox"
+            />
+          </div>
+  
+          <div class="card4">
+            <p style="font-size: 40px">🥒</p>
+            <p>Cucumber</p>
+            <input
+              type="checkbox"
+              name="ingredient"
+              value="cucumber"
+              class="card-checkbox"
+            />
+          </div>
+  
+          <div class="card4">
+            <p style="font-size: 40px">🍄</p>
+            <p>Mushroom</p>
+            <input
+              type="checkbox"
+              name="ingredient"
+              value="mushroom"
+              class="card-checkbox"
+            />
+          </div>
+  
+          <div class="card4">
+            <p style="font-size: 40px">🧅</p>
+            <p>Onion</p>
+            <input
+              type="checkbox"
+              name="ingredient"
+              value="onion"
+              class="card-checkbox"
+            />
+          </div>
+  
+          <div class="card4">
+            <p style="font-size: 40px">🥒</p>
+            <p>Cucumber</p>
+            <input
+              type="checkbox"
+              name="ingredient"
+              value="cucumber"
+              class="card-checkbox"
+            />
+          </div>
+  
+          <div class="card4">
+            <p style="font-size: 40px">🥥</p>
+            <p>Coconut</p>
+            <input
+              type="checkbox"
+              name="ingredient"
+              value="coconut"
+              class="card-checkbox"
+            />
+          </div>
+  
+          <div class="card4">
+              <p style="font-size: 40px">🥑</p>
+              <p>Avocado</p>
+              <input
+                type="checkbox"
+                name="ingredient"
+                value="avocado"
+                class="card-checkbox"
+              />
+            </div>
+  
+            <div class="card4">
+              <p style="font-size: 40px">🥚</p>
+              <p>Egg</p>
+              <input
+                type="checkbox"
+                name="ingredient"
+                value="egg"
+                class="card-checkbox"
+              />
+            </div>
+  
+  
+  
+          <div class="card4">
+            <p style="font-size: 40px">🦐</p>
+            <p>Shrimp</p>
+            <input
+              type="checkbox"
+              name="ingredient"
+              value="shrimp"
+              class="card-checkbox"
+            />
+          </div>
+  
+          <div class="card4">
+            <p style="font-size: 40px">🐔</p>
+            <p>Chicken</p>
+            <input
+              type="checkbox"
+              name="ingredient"
+              value="chicken"
+              class="card-checkbox"
+            />
+          </div>
+  
+  
+            <div class="card4">
+              <p style="font-size: 40px">🐂</p>
+              <p>Beef</p>
+              <input
+                type="checkbox"
+                name="ingredient"
+                value="beef"
+                class="card-checkbox"
+              />
+            </div>
+  
+              <div class="card4">
+                  <p style="font-size: 40px">🐟</p>
+                  <p>Fish</p>
+                  <input
+                    type="checkbox"
+                    name="ingredient"
+                    value="Fish"
+                    class="card-checkbox"
+                  />
+              </div>
+  
+              <div class="card4">
+                  <p style="font-size: 40px">🐑</p>
+                  <p>Lamb</p>
+                  <input
+                    type="checkbox"
+                    name="ingredient"
+                    value="Lamb"
+                    class="card-checkbox"
+                  />
+              </div>
+  
+              <div class="card4">
+                  <p style="font-size: 40px">🐖</p>
+                  <p>Pork</p>
+                  <input
+                    type="checkbox"
+                    name="ingredient"
+                    value="pork"
+                    class="card-checkbox"
+                  />
+              </div> 
+          </div>
+          <div class="button-container" id='thatis'>
+            <div class="button">That's it!</div>
+        </div>
+        </div>
+
+
+      </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- step3 -->
+
+    <div class="step" id="step-3" style="margin-top: 4rem;">
+      <div class="button-container">
+        <h1>Do you have any diet preference?   (3/4)</h1>
+        <h5 style="margin-top: 30px">e.g Vegan, Vegetarian...</h5>
+      </div>
+      <div class="choice-container" id="diet-choice">
+        <div class="button" id="diet-no" style="margin-right: 30px">
+          Not really
+        </div>
+
+        <div class="button" id="diet-yes" style="margin-left: 30px">
+          Yes, I'm now...
+        </div>
+      </div>
+
+      <div class="card-container" id="step3option" style="display: none"></div>
+
+      <!-- Step 3 choose intolerable ingredient-->
+
+      <div class="step" id="step-4">
+        <div class="button-container">
+          <h1>Do you have any allergic ingredient?    (4/4)</h1>
+        </div>
+
+        <div class="choice-container" id="intolerance-choice" style="margin-bottom: 4rem;">
+          <div class="button" id="intolerance-no" style="margin-right: 30px">
+            No, I'm good
+          </div>
+
+          <div class="button" id="intolerance-yes" style="margin-left: 30px">
+            Yes, they are...
+          </div>
+        </div>
+
+        <div
+          class="card-container"
+          id="step4option"
+          style="display: none"
+        ></div>
+      </div>
+
+      <div class="button-container">
+        <div
+          class="button"
+          id="get-recipe"
+          style="margin-right: 30px; display: none"
+        >
+          Get my recipe!
+        </div>
+      </div>
+    </div>
+
+    
+    <div class="button-container" id="tailor" style="display: none;">
+        <h1>Here are the recipes we tailored for you!</h1>
+       
+      </div>
+    <div class="card-container" id="recipe">
+      <!-- <div class="card3">
+        <div class="image-container">
+          <img src="pasta.jpg" alt="pasta" />
+        </div>
+        <p>title title title title</p>
+      </div>
+      <div class="card3">
+        <div class="image-container">
+          <img src="chicken.jpg" alt="chicken" />
+        </div>
+        <p>title title title title</p>
+      </div>
+      <div class="card3">
+        <div class="image-container">
+          <img src="chicken.jpg" alt="chicken" />
+        </div>
+        <p>title title title title</p>
+      </div> -->
+    </div>
+    <div class="button-container" id="toggle-random" style="display: none">
+      <p>
+        Can not decide yet? Try to get a
+        <a href="random.html">Random recipe</a>!
+      </p>
+    </div>
+
+
+
+    <script src="script.js"></script>
+  </body>
+</html>

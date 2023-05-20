@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <style>
+      .center {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+
+      .search-container {
+        width: 600px;
+      }
+
+      .search-container input[type="text"] {
+        height: 3rem; /* 调整搜索框的宽度 */
+        border-radius: 50px; /* 设置圆角 */
+        box-shadow: 0 0.3rem 0.7rem rgba(0, 0, 0, 0.1); /* 添加阴影效果 */
+      }
+
+      .search-container button {
+        border-radius: 50px; /* 设置按钮的圆角 */
+        width: 7rem;
+        box-shadow: 0 0.3rem 0.7rem rgba(0, 0, 0, 0.1);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="center">
+      <div class="search-container">
+        <h2>Search Example</h2>
+        <div class="input-group mb-3">
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Search..."
+            aria-label="Search"
+            aria-describedby="search-button"
+          />
+          <div class="input-group-append">
+            <button class="btn btn-primary" type="button" id="search-button">
+              Search
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
+
+<!-- <!DOCTYPE html>
+<html>
+  <head>
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+  </head>
+  <body>
+    <div class="container mt-4">
+      <h2>Search Example</h2>
+      <div class="input-group mb-3">
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Search..."
+          aria-label="Search"
+          aria-describedby="search-button"
+        />
+        <div class="input-group-append">
+          <button class="btn btn-primary" type="button" id="search-button">
+            Search
+          </button>
+        </div>
+      </div>
+    </div>
+  </body>
+</html> -->

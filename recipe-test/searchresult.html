@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ"
+      crossorigin="anonymous"
+    />
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+      }
+
+      h2{
+        text-align: center;
+        font-size: 3rem;
+        font-weight: 700;
+        margin: 2rem; 
+        margin-top: 8rem;
+      }
+
+      .navbar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100px;
+        background-color: #fff;
+        transition: background-color 0.5s ease; /* 背景色渐变过渡效果 */
+        z-index: 1;
+        /* box-shadow: 0 0.2rem 0.3rem rgba(0, 0, 0, 0.1); */
+      }
+
+      /* body{
+
+      } */
+
+
+
+      .navbar.scrolled {
+        background-color: #fff; /* 滚动时变为白色 */
+        box-shadow: 0 0.3rem 0.7rem rgba(0, 0, 0, 0.1);
+      }
+
+      .button {
+        height: 3rem;
+        background-color: #333;
+        color: #fff;
+        border-radius: 10rem;
+        border: none;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.2s;
+        padding: 1.5rem 2rem;
+        font-size: 1rem;
+        font-weight: 500;
+        margin: 0 1rem;
+        /* box-shadow: 0 5px 5px 0 rgba(0, 0, 0, 0.3); */
+      }
+
+      .button:hover {
+        background-color: #555;
+      }
+
+      .center {
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        position: absolute;
+        top: 35%;
+        left: 10%;
+      }
+
+      .search-container {
+        width: 50rem;
+      }
+      .button-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin: 0 0 8rem 0;
+      }
+
+      .form-control {
+        text-indent: 1rem;
+      }
+
+      .card-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        margin: 2rem;
+      }
+
+      .image-container img {
+        width: 100%;
+        height: 24rem;
+        object-fit: cover;
+      }
+
+      .card {
+        display: flex;
+        flex-direction: column;
+        width: 25rem;
+        height: 27rem;
+        margin: 2rem;
+        align-items: center;
+        justify-content: center;
+        background-color: #fff;
+        border: 1px solid #ddd;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0px 0px 10px #ddd;
+      }
+      .card p {
+        font-size: 1.2rem;
+        font-weight: 500;
+        margin: 0.5rem;
+        text-overflow: ellipsis;
+      }
+
+
+      .categories {
+  display: flex;
+  align-items: center;
+}
+
+
+
+      .search-container1 input[type="text"] {
+        width: 50rem;
+        height: 3rem; /* 调整搜索框的宽度 */
+        border-radius: 50px; /* 设置圆角 */
+        font-size: 1rem;
+   
+        box-shadow: 0.1rem 0.1rem 0.3rem rgba(0, 0, 0, 0.2); 
+ 
+      }
+
+      .search-container1 input[type="text"]::placeholder {
+        font-size: 1rem;
+      }
+
+      .hide {
+  opacity: 0;
+}
+
+.show {
+  opacity: 1;
+}
+
+.card-options {
+  display: flex;
+  flex-direction: column;
+  width:6rem;
+  height: 6rem;
+  margin:1rem;
+  padding: 0.5rem;
+  align-items: center;
+  justify-content: center;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 20rem;
+  box-shadow: 0px 0px 10px #ddd;
+  transition: background-color 0.3s ease-in-out;
+}
+
+
+
+
+      @media (max-width: 992px) {
+        .search-container {
+          display: none; /* 达到 768px 宽度以下时隐藏搜索框 */
+        }
+        .navbar-text {
+          display: none;
+        }
+        .nav-search{
+          display: none;
+        }
+      }
+
+      .card-options:hover,.card:hover {
+  background-color: #f8f8f8;
+  cursor: pointer;
+}
+      
+
+
+.category .card-options p:first-of-type {
+  font-size: 3rem;
+}
+
+
+.category p:last-of-type {
+  text-align: center;
+  font-weight: 500;
+}
+    </style>
+  </head>
+
+  <body>
+    <div class="navbar navbar-expand-lg">
+      <div class="container-fluid">
+        <a
+          class="navbar-brand"
+          href="newhome.html"
+          style="margin-left: 1rem; font-size: 2rem"
+        >
+          Navbar</a
+        >
+
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!-- <div class="navbar-search form-control">
+          <input type="text" placeholder="Search..." />
+        </div> -->
+
+
+        <div class="nav-search search-container1 me-auto " style="margin-left: 10rem; position: relative;" >
+            <input
+            id="search-input"
+              type="text"
+              class="form-control"
+              placeholder="  Search..."
+            />
+            <button id="enter-button" style="border: none; background-color: transparent; position: absolute; right: 1.5rem; top: 50%; transform: translateY(-50%); color: #333;display: none;">Enter</button>
+          </div>
+ 
+
+
+
+
+        <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+          
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="player3.html">
+                <div class="button">Get inspiration</div></a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="myfridge.html">
+                <div class="button">My fridge</div></a
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<div style="margin-top: 10rem;"></div>
+
+
+<h2 id="search-title"></h2>
+<div id="search-result">
+
+
+</div>
+
+
+
+
+</div>
+  <h2 style="margin: 2rem; ">Categories</h2>
+  <div class="card-container">
+
+    <div class="category">
+    <div class="card-options">
+      <p>🍛</p>
+      <input
+        type="hidden"
+        name="food"
+        value="Rice" 
+      />
+    </div>
+    <p style="text-align: center;">Rice</p>
+    </div>
+
+
+
+    <div class="category">
+    <div class="card-options">
+      <p>🥗</p>
+
+      <input
+        type="hidden"
+        name="food"
+        value="Salad"
+      />
+    </div>
+    <p>Salad</p>
+    </div>
+
+
+
+    <div class="category">
+    <div class="card-options">
+      <p>🍣</p>
+
+      <input
+        type="hidden"
+        name="food"
+        value="Sushi"
+      />
+    </div>
+    <p>Sushi</p>
+    </div>
+
+
+    <div class="category">
+    <div class="card-options">
+      <p>🌮</p>
+
+      <input
+        type="hidden"
+        name="food"
+        value="Tacos"
+      />
+    </div>
+    <p>Tacos</p>
+    </div>
+
+
+    <div class="category">
+    <div class="card-options">
+      <p>🥘</p>
+ 
+      <input
+        type="hidden"
+        name="food"
+        value="Soup"
+      />
+    </div>
+    <p>Soup</p>
+    </div>
+
+
+    <div class="category">
+    <div class="card-options">
+      <p>🍔</p>
+
+      <input
+        type="hidden"
+        name="food"
+        value="Burger"
+      />
+    </div>
+    <p>Burger</p>
+    </div>
+
+    <div class="category">
+    <div class="card-options">
+      <p>🍝</p>
+
+      <input
+        type="hidden"
+        name="food"
+        value="Pasta"
+      />
+    </div>
+    <p>Pasta</p>
+    </div>
+
+    <div class="category">
+    <div class="card-options">
+      <p>🍕</p>
+      <input
+        type="hidden"
+        name="food"
+        value="Pizza"
+      />
+    </div>
+    <p>Pizza</p>
+    </div>
+
+    <div class="category">
+    <div class="card-options">
+      <p>🍨</p>
+
+      <input
+        type="hidden"
+        name="food"
+        value="Dessert"
+      />
+    </div>
+    <p>Dessert</p>
+    </div>
+  </div>
+
+
+
+  <h2 id="category-title"></h2>
+  <div id="category-result">
+
+  </div>
+       
+
+
+      <h2 >Trendy Recipe</h2>
+      <div class="card-container">
+        <div class="card">
+          <a href="http://127.0.0.1:5500/details.html?id=279163" style="text-align: center; text-decoration: none;color: #333;">
+          <div class="image-container">
+            <img src="https://spoonacular.com/recipeImages/279163-556x370.jpg" alt="bacon pizza" />
+          </div>
+          <p>Blanco Turkey Bacon Pizza</p>
+          </a>
+        </div>
+
+        <div class="card">
+          <a href="http://127.0.0.1:5500/details.html?id=6431" style="text-align: center; text-decoration: none; color: #333;">
+          <div class="image-container">
+            <img src="https://spoonacular.com/recipeImages/6431-556x370.jpg" alt="fish soup" />
+          </div>
+          <p>Fish soup</p>
+        </a>
+        </div>
+        
+
+        <div class="card">
+          <a href="http://127.0.0.1:5500/details.html?id=595223" style="text-align: center; text-decoration: none; color: #333;">
+          <div class="image-container">
+            <img src="https://spoonacular.com/recipeImages/595223-556x370.jpg" alt="lobster roll" />
+          </div>
+          <p>New England Lobster Roll</p>
+        </a>
+        </div>
+      </div>
+
+   
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
+      crossorigin="anonymous"
+    ></script>
+    <script>
+          var searchInput = document.getElementById('search-input');
+  var enterButton = document.getElementById('enter-button');
+
+  searchInput.addEventListener('input', function() {
+    if (searchInput.value.trim() !== '') {
+      enterButton.style.display = 'block';
+    } else {
+      enterButton.style.display = 'none';
+    }
+  });
+
+    </script>
+
+    <!-- <script>
+         var cardOptions = document.querySelectorAll('.card-options');
+let url
+cardOptions.forEach(function(cardOption) {
+  var input = cardOption.querySelector('input');
+  cardOption.addEventListener('click', function() {
+    var food = input.value;
+    url = "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/complexSearch?query=" + food;
+    url += "&number=30";
+    console.log(url)
+    });
+  });
+
+    </script> -->
+
+<script>
+
+
+
+const categoryTitle = document.getElementById("category-title");
+const categoryResult = document.getElementById("category-result");
+const categories = document.querySelectorAll(".category");
+const searchResult = document.getElementById('search-result')
+const searchTitle =document.getElementById('search-title')
+
+
+categories.forEach((category) => {
+  category.addEventListener("click", async () => {
+    const food = category.querySelector("input[name='food']").value;
+    categoryTitle.textContent = `${food} Recipe `;
+
+    try {
+      const recipeData = await fetchRecipeData(food);
+      displayRecipes(recipeData,categoryResult);
+    } catch (error) {
+      console.error("Error fetching recipe data:", error);
+    }
+  });
+});
+
+
+function clearKeywordParam() {
+  const urlWithoutParams = window.location.origin + window.location.pathname;
+  window.history.pushState({}, '', urlWithoutParams);
+}
+
+
+// 获取 URL 参数中的搜索关键词
+const urlParams = new URLSearchParams(window.location.search);
+const keyword_home = urlParams.get('keyword');
+if (keyword_home){
+    handleSearch(keyword_home);
+    clearKeywordParam();
+
+}
+
+
+
+
+
+
+// Listen for the click event on the Enter button
+enterButton.addEventListener('click', () => {
+  const keyword = searchInput.value;
+  handleSearch(keyword);
+  searchInput.value = '';
+  searchInput.blur(); 
+ 
+});
+
+
+// Listen for the keydown event on the input field
+searchInput.addEventListener('keydown', (event) => {
+  if (event.key === 'Enter') {
+    const keyword = searchInput.value;
+    handleSearch(keyword);
+    searchInput.value = '';
+    searchInput.blur(); 
+  }
+});
+
+async function handleSearch(keyword) {
+//   const food = searchInput.value;
+  searchTitle.textContent =` Result for "${keyword}" `
+
+  try {
+    const recipeData = await fetchRecipeData(keyword);
+    displayRecipes(recipeData,searchResult);
+  } catch (error) {
+    console.error('Error fetching recipe data:', error);
+  }
+}
+
+
+
+
+
+async function fetchRecipeData(food) {
+  const url =
+    "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/complexSearch?query=" +
+    food+'&number=30';
+
+    console.log(url)
+  const options = {
+    method: "GET",
+    headers: {
+      "X-RapidAPI-Key": "0ea6aa2962mshf9120b6d8aad583p189182jsn145a03b81325",
+      "X-RapidAPI-Host": "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com",
+    },
+  };
+
+  try {
+    const response = await fetch(url, options);
+    const data = await response.json();
+    console.log(data)
+    return data;
+  } catch (error) {
+    console.error("API error:", error);
+    return null;
+  }
+}
+
+function displayRecipes(recipeData,divName) {
+  // 清空之前的内容
+  divName.innerHTML = "";
+
+  if (!recipeData) {
+    // 处理请求错误的情况
+    const errorElement = document.createElement("p");
+    errorElement.textContent = "Cannot retrive the recipes. Please try it again";
+    divName.appendChild(errorElement);
+    return;
+  }
+
+  // 创建 <div class="card-container"> 元素
+  const cardContainer = document.createElement("div");
+  cardContainer.className = "card-container";
+  divName.appendChild(cardContainer);
+
+  const recipes = recipeData.results;
+  console.log(recipes)
+  console.log("recipes:",recipes)
+
+  recipes.forEach((recipe) => {
+    // 创建 <div class="card"> 元素
+    const card = document.createElement("div");
+    card.className = "card";
+    cardContainer.appendChild(card);
+
+    // 创建 <div class="image-container"> 元素
+    const imageContainer = document.createElement("div");
+    imageContainer.className = "image-container";
+    card.appendChild(imageContainer);
+
+    // 创建 <img> 元素
+    const image = document.createElement("img");
+    image.src = recipe.image;
+    image.alt = recipe.title;
+    imageContainer.appendChild(image);
+
+    // 创建 <p> 元素
+    const pElement = document.createElement("p");
+    pElement.textContent = recipe.title;
+    card.appendChild(pElement);
+
+    // const hiddenInput = document.createElement("input");
+    // hiddenInput.type = "hidden";
+    // hiddenInput.value = recipe.id;
+    // card.appendChild(hiddenInput);
+
+    // const recipeLink = document.createElement("a");
+    // recipeLink.href = `detail.html?id=${recipe.id}`;
+    // recipeLink.target = "_blank";
+    // card.appendChild(recipeLink);
+
+    card.addEventListener("click", (event) => {
+        event.preventDefault();
+        window.open(`details.html?id=${recipe.id}`, "_blank");
+      });
+
+
+
+    
+  });
+
+}
+
+
+
+
+
+</script>
+  </body>
+</html>

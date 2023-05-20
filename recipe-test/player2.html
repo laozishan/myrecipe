@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      #player {
+        position: fixed;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 30px;
+      }
+
+      .food {
+        position: absolute;
+        font-size: 50px;
+      }
+
+      #countdown {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        font-size: 24px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="player">🧑</div>
+    <button id="startButton">开始游戏</button>
+    <div id="countdown"></div>
+
+    <script>
+      // 获取玩家角色的DOM元素
+      const player = document.getElementById("player");
+
+      // 食材列表
+      const foods = [
+        "🥥",
+        "🥦",
+        "🥬",
+        "🥝",
+        "🥒",
+        "🌶",
+        "🫑",
+        "🥑",
+        "🧅",
+        "🥕",
+        "🌽",
+        "🥔",
+        "🍠",
+        "🍌",
+        "🍋",
+        "🫐",
+        "🍗",
+        "🍖",
+        "🍤",
+        "🍚",
+        "🧀",
+        "🌰",
+        "🍅",
+      ];
+
+      // 复制食材列表
+      const foodCopy = [...foods];
+
+      // 随机生成食材并添加到页面中
+      function createFood() {
+        if (foodCopy.length === 0) {
+          return; // 食材已全部生成完毕，停止生成
+        }
+
+        const foodIndex = Math.floor(Math.random() * foodCopy.length);
+        const foodIcon = foodCopy[foodIndex];
+        foodCopy.splice(foodIndex, 1); // 从foodCopy中移除已选择的食材
+
+        const food = document.createElement("div");
+        food.className = "food";
+        food.innerHTML = foodIcon; // 使用随机的食材图标
+        const x = Math.random() * (window.innerWidth - 50);
+        const y = Math.random() * (window.innerHeight - 50);
+        food.style.left = x + "px";
+        food.style.top = y + "px";
+        document.body.appendChild(food);
+      }
+
+      // 监听键盘按下事件
+      document.addEventListener("keydown", function (event) {
+        const speed = 10; // 玩家角色的移动速度
+        const playerRect = player.getBoundingClientRect();
+        let playerX = playerRect.left + playerRect.width / 2;
+        let playerY = playerRect.top + playerRect.height / 2;
+
+        // 根据按键来移动玩家角色
+        switch (event.key) {
+          case "ArrowLeft":
+            playerX -= speed;
+            break;
+          case "ArrowRight":
+            playerX += speed;
+            break;
+          case "ArrowUp":
+            playerY -= speed;
+            break;
+          case "ArrowDown":
+            playerY += speed;
+            break;
+        }
+
+        // 更新玩家角色的位置
+        player.style.left = playerX + "px";
+        player.style.top = playerY + "px";
+
+        // 检测碰撞
+        const foods = document.getElementsByClassName("food");
+        for (let i = 0; i < foods.length; i++) {
+          const food = foods[i];
+          const foodRect = food.getBoundingClientRect();
+
+          if (
+            playerX < foodRect.right &&
+            playerX + playerRect.width > foodRect.left &&
+            playerY < foodRect.bottom &&
+            playerY + playerRect.height > foodRect.top
+          ) {
+            // 碰撞发生，移除食材并增加得分
+            food.remove();
+            // 在此处增加计分逻辑
+          }
+        }
+      });
+
+      // 获取开始按钮的DOM元素
+      const startButton = document.getElementById("startButton");
+
+      // 获取倒计时显示元素的DOM元素
+      const countdown = document.getElementById("countdown");
+
+      // 点击开始按钮后的处理函数
+      startButton.addEventListener("click", function () {
+        startButton.disabled = true; // 禁用开始按钮
+
+        // 随机生成食材
+        for (let i = 0; i < foods.length; i++) {
+          createFood();
+        }
+
+        // 启动倒计时计时器
+        const timeLimit = 10; // 游戏时长（秒）
+        let timeLeft = timeLimit;
+        countdown.textContent = timeLeft; // 初始化倒计时显示
+
+        const timer = setInterval(function () {
+          if (timeLeft <= 0) {
+            clearInterval(timer);
+            // 在此处结束游戏，显示最终得分等操作
+            alert("游戏结束！");
+            startButton.disabled = false; // 启用开始按钮
+          } else {
+            countdown.textContent = timeLeft; // 更新倒计时显示
+            timeLeft--;
+          }
+        }, 1000);
+      });
+    </script>
+  </body>
+</html>
+
+<!--   const foods = [
+        "🥥",
+        "🥦",
+        "🥬",
+        "🥝",
+        "🥚",
+        "🥩",
+        "🥚",
+        "🍅",
+        "🍄",
+        "🥜",
+        "🥒",
+        "🌶",
+        "🫑",
+        "🥑",
+        "🧅",
+        "🥕",
+        "🌽",
+        "🥔",
+        "🍠",
+        "🍌",
+        "🍋",
+        "🫐",
+        "🍗",
+        "🍖",
+        "🍤","🍚","🧀","🌰"
+      ]; -->
+
+<!-- 
+      const ingredients = {
+        "🥥": "Coconut",
+        "🥦": "Broccoli",
+        "🥬": "Lettuce",
+        "🥝": "Kiwi",
+        "🥚": "Egg",
+        "🥩": "Steak",
+        "🍅": "Tomato",
+        "🍄": "Mushroom",
+        "🥜": "Peanut",
+        "🥒": "Cucumber",
+        "🌶": "Chili",
+        "🫑": "Bell Pepper",
+        "🥑": "Avocado",
+        "🧅": "Onion",
+        "🥕": "Carrot",
+        "🌽": "Corn",
+        "🥔": "Potato",
+        "🍠": "Sweet Potato",
+        "🍌": "Banana",
+        "🍋": "Lemon",
+        "🫐": "Blueberry",
+        "🍗": "Chicken",
+        "🍖": "Meat",
+        "🍤": "Shrimp",
+        "🍚": "Rice",
+        "🧀": "Cheese",
+        "🌰": "Nut",
+      };
+       -->

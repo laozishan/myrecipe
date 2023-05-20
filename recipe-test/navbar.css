@@ -1,0 +1,159 @@
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100px;
+  background-color: #fff;
+  transition: background-color 0.5s ease; /* 背景色渐变过渡效果 */
+  z-index: 1;
+  /* box-shadow: 0 0.2rem 0.3rem rgba(0, 0, 0, 0.1); */
+}
+
+/* body{
+
+  } */
+
+.navbar.scrolled {
+  background-color: #fff; /* 滚动时变为白色 */
+  box-shadow: 0 0.3rem 0.7rem rgba(0, 0, 0, 0.1);
+}
+
+.button {
+  height: 3rem;
+  background-color: #333;
+  color: #fff;
+  border-radius: 10rem;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+  padding: 1.5rem 2rem;
+  font-size: 1rem;
+  font-weight: 500;
+  margin: 0 1rem;
+  /* box-shadow: 0 5px 5px 0 rgba(0, 0, 0, 0.3); */
+}
+
+.button:hover {
+  background-color: #555;
+}
+
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  position: absolute;
+  top: 35%;
+  left: 10%;
+}
+
+.search-container {
+  width: 50rem;
+}
+.button-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0 0 8rem 0;
+}
+
+.form-control {
+  text-indent: 1rem;
+}
+
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 2rem;
+}
+
+.image-container img {
+  width: 100%;
+  height: 24rem;
+  object-fit: cover;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  width: 25rem;
+  height: 27rem;
+  margin: 2rem;
+  align-items: center;
+  justify-content: center;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0px 0px 10px #ddd;
+}
+.card p {
+  font-size: 1.2rem;
+  font-weight: 500;
+  margin: 0.5rem;
+  text-overflow: ellipsis;
+}
+
+.card:hover {
+  background-color: #f8f8f8;
+  cursor: pointer;
+}
+
+.categories {
+  display: flex;
+  align-items: center;
+}
+
+.search-container1 input[type="text"] {
+  width: 50rem;
+  height: 3rem; /* 调整搜索框的宽度 */
+  border-radius: 50px; /* 设置圆角 */
+  font-size: 1rem;
+
+  box-shadow: 0.1rem 0.1rem 0.3rem rgba(0, 0, 0, 0.2);
+}
+
+.search-container1 input[type="text"]::placeholder {
+  font-size: 1rem;
+}
+
+.hide {
+  opacity: 0;
+}
+
+.show {
+  opacity: 1;
+}
+
+.card-options {
+  display: flex;
+  flex-direction: column;
+  width: 6rem;
+  height: 6rem;
+  margin: 1rem;
+  padding: 0.5rem;
+  align-items: center;
+  justify-content: center;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 20rem;
+  box-shadow: 0px 0px 10px #ddd;
+  transition: background-color 0.3s ease-in-out;
+}
+
+@media (max-width: 992px) {
+  .search-container {
+    display: none; /* 达到 768px 宽度以下时隐藏搜索框 */
+  }
+  .navbar-text {
+    display: none;
+  }
+  .nav-search {
+    display: none;
+  }
+}

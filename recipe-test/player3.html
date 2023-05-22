@@ -93,7 +93,7 @@
       }
 
       .modal-content button:hover {
-        background-color: #dbb220;
+        background-color: #deb629;
       }
 
       .modal-content p {
@@ -208,6 +208,9 @@
         .nav-search{
           display: none;
         }
+        .navbar img {
+          display: none;
+        }
       }
 
       #timer{
@@ -228,12 +231,12 @@
     <div class="navbar navbar-expand-lg">
         <div class="container-fluid">
           <a
-            class="navbar-brand"
-            href="newhome.html"
-            style="margin-left: 1rem; font-size: 2rem"
-          >
-            Navbar</a
-          >
+          class="navbar-brand"
+          href="newhome.html"
+          style="margin-left: 1rem; font-size: 2rem; width: 100px;"
+        >
+        <img src="logo.png"  style="width: 180%;"  alt=""></a
+        >
   
           <button
             class="navbar-toggler"
@@ -309,7 +312,7 @@
       </div>
     </div>
 
-
+    <div  id="showrecipe"  style="margin-top: 1px;">
     <div  id="recipesDiv"  style="display: none;">
      <h2 id="recipeh2">Here are recipes with your collected ingredients!</h2>
     <div class="card-container" id="recipeContainer">
@@ -397,13 +400,13 @@
         "🥜": "Peanut",
         "🥒": "Cucumber",
         "🌶": "Chili",
-        "🫑": "Bell+Pepper",
+        "🫑": "Bell Pepper",
         "🥑": "Avocado",
         "🧅": "Onion",
         "🥕": "Carrot",
         "🌽": "Corn",
         "🥔": "Potato",
-        "🍠": "Sweet+Potato",
+        "🍠": "Sweet Potato",
         "🍌": "Banana",
         "🍋": "Lemon",
         "🫐": "Blueberry",
@@ -592,47 +595,10 @@
       });
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
       generateRecipeBtn.addEventListener("click", () => {
         generateRecipe(finalIngredients);
         hideIngredientsModal();
       });
-
-
-
-
-
-
 
 
       async function generateRecipe(finalIngredients) {
@@ -645,9 +611,9 @@
       } catch (error) {
         console.error('Error fetching recipe data:', error);
       }
-
+        recipeh2.innerHTML = `Here are recipes with ${finalIngredients.join(', ')}`;
         recipesDiv.style.display = 'block';
-        recipeh2.scrollIntoView({ behavior: "smooth" });
+        window.scrollTo(0, 700);
       }
       
       
@@ -664,9 +630,10 @@
 
 
 async function fetchRecipeData(food) {
-  const url =
+  let url =
     "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/findByIngredients?ingredients=" +
     food+'&number=30';
+    url=url.replace(/ /g, "+")
 
     console.log(url)
   const options = {

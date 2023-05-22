@@ -131,6 +131,9 @@
         .nav-search{
           display: none;
         }
+        .navbar img {
+          display: none;
+        }
       }
 
       .buttonthatis {
@@ -157,6 +160,12 @@
 
   .active{
         background-color: #FBCD21;
+        color: #333;
+        cursor: pointer;
+      }
+
+      .active:hover{
+        background-color: #deb629;
         color: #333;
         cursor: pointer;
       }
@@ -218,12 +227,12 @@
     <div class="navbar navbar-expand-lg">
         <div class="container-fluid">
           <a
-            class="navbar-brand"
-            href="newhome.html"
-            style="margin-left: 1rem; font-size: 2rem"
-          >
-            Navbar</a
-          >
+          class="navbar-brand"
+          href="newhome.html"
+          style="margin-left: 1rem; font-size: 2rem; width: 100px;"
+        >
+        <img src="logo.png"  style="width: 180%;"  alt=""></a
+        >
   
           <button
             class="navbar-toggler"
@@ -441,8 +450,10 @@ cardOptions.forEach((card) => {
 
 
 
-thatis.addEventListener("click", () => {
-        generateRecipe(myIngredients);
+thatis.addEventListener("click",function(event) {
+  if (thatis.classList.contains('active')) {
+    generateRecipe(myIngredients);
+  }
       });
 
 
@@ -460,7 +471,7 @@ thatis.addEventListener("click", () => {
       }
 
         recipesDiv.style.display = 'block';
-        recipesDiv.scrollIntoView({ behavior: "smooth" });
+        window.scrollTo(0, 1600);
       }
       
       
@@ -510,13 +521,13 @@ function displayRecipes(recipeData,divName) {
   if (!recipeData) {
     // 处理请求错误的情况
     errorh2.textContent = "Cannot retrive the recipes. Please try it again";
-    errorh2.style.display ="flex"
+    errorh2.style.display ="block"
     return;
   }
 
   else if(recipeData.length==0){
     errorh2.textContent = "We didn't find recipes with all these ingredients";
-    errorh2.style.display ="flex"
+    errorh2.style.display ="block"
     return;
 
   }

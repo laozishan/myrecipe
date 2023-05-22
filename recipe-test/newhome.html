@@ -114,6 +114,10 @@
         justify-content: center;
         margin: 2rem;
       }
+      .text-container p{
+        font-size: 18px;
+
+      }
 
       .image-container img {
         width: 100%;
@@ -191,7 +195,7 @@
 
 
 
-      @media (max-width: 992px) {
+@media (max-width: 992px) {
         .search-container {
           display: none; /* 达到 768px 宽度以下时隐藏搜索框 */
         }
@@ -199,6 +203,9 @@
           display: none;
         }
         .nav-search{
+          display: none;
+        }
+        .navbar img {
           display: none;
         }
       }
@@ -224,9 +231,9 @@
         <a
           class="navbar-brand"
           href="newhome.html"
-          style="margin-left: 1rem; font-size: 2rem"
+          style="margin-left: 1rem; font-size: 2rem; width: 100px;"
         >
-          Navbar</a
+        <img src="logo.png"  style="width: 180%;"  alt=""></a
         >
 
         <button
@@ -245,7 +252,7 @@
         </div> -->
 
 
-        <div class="nav-search search-container1 me-auto hide" style="margin-left: 10rem;position: relative;">
+        <div class="nav-search search-container1 me-auto hide" style="position: relative;margin-left: 10rem;">
             <input
             id="hide-input"
               type="text"
@@ -332,6 +339,40 @@
         </a>
         </div>
       </div>
+    </div>
+    
+
+    <div style="background-color: rgba(251, 205, 33, 0.8);">
+     
+      <div class="text-container" style="padding:  2rem 20rem 5rem 20rem;">
+
+        <h2 style="margin-top: 3rem;">About the website</h2>
+        <p>Welcome here! We're so excited to share our passion of cooking and exploring new flavors with you. Our website is designed to make your time in the kitchen more enjoyable with a variety of features that will enhance your culinary experience.
+       </p>
+       <h3 style="text-align: center; margin-top: 3rem;font-weight: 600;">
+What can you do with us?</h3>
+
+<p>
+With our powerful recipe search feature, you can access to a wide variety of recipes to suit your taste buds and dietary preferences. Explore our extensive recipe database to find quick and easy weeknight meals or fancy dishes for special occasions. We provide comprehensive information to ensure that you have all the tools you need to create culinary masterpieces in your own kitchen. And if you're ever stumped with what to cook with the ingredients you have on hand, our feature will generate customized recipes tailored to your specific pantry items.
+</p>
+<h3  style="text-align: center; margin-top: 3rem;font-weight: 600;">
+Why us?</h3>
+
+<p>
+But it's not all business with us! We understand the everyday challenge of figuring out what to cook with the ingredients already in your refrigerator. That's why we developed a feature that allows you to input your available ingredients and generate customized recipes tailored to your specific pantry items. Say goodbye to food waste and hello to creativity in the kitchen! We believe in bringing fun and entertainment to your cooking experience, so we offer a small game to spark creativity and inspire you with random recipe ideas.
+
+</p>
+<p>
+Join us on this culinary journey as we strive to simplify your cooking experience, empower your creativity, and ignite your passion for food. Our Name Here is here to be your go-to destination for recipe inspiration and kitchen enjoyment. Let's start your flavorful adventure today!
+
+
+</p>
+      </div>
+    </div>
+
+
+
+      
 
 
     
@@ -364,13 +405,20 @@
   var hideInput = document.getElementById('hide-input')
 
 
+  window.addEventListener('load', function() {
+  // 滚动到页面顶部
+  window.scrollTo({ top: 0, behavior: 'auto' });
+});
+
   document.addEventListener("DOMContentLoaded", function(event) {
+
+
   var navSearch = document.querySelector(".nav-search");
 
   window.addEventListener("scroll", function() {
     var scrollPercentage = (document.documentElement.scrollTop + document.body.scrollTop) / (document.documentElement.scrollHeight - document.documentElement.clientHeight) * 100;
 
-    if (scrollPercentage >= 38) {
+    if (scrollPercentage >= 20) {
       navSearch.classList.add("show");
       navSearch.classList.remove("hide");
     } else {

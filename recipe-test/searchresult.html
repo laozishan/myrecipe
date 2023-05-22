@@ -212,13 +212,12 @@
     <div class="navbar navbar-expand-lg">
       <div class="container-fluid">
         <a
-          class="navbar-brand"
-          href="newhome.html"
-          style="margin-left: 1rem; font-size: 2rem"
-        >
-          Navbar</a
-        >
-
+        class="navbar-brand"
+        href="newhome.html"
+        style="margin-left: 1rem; font-size: 2rem; width: 100px;"
+      >
+      <img src="logo.png"  style="width: 180%;"  alt=""></a
+      >
         <button
           class="navbar-toggler"
           type="button"
@@ -535,6 +534,8 @@ enterButton.addEventListener('click', () => {
   handleSearch(keyword);
   searchInput.value = '';
   searchInput.blur(); 
+  window.scrollTo(0, 0);
+  
  
 });
 
@@ -546,6 +547,7 @@ searchInput.addEventListener('keydown', (event) => {
     handleSearch(keyword);
     searchInput.value = '';
     searchInput.blur(); 
+    window.scrollTo(0, 0);
   }
 });
 
@@ -566,9 +568,10 @@ async function handleSearch(keyword) {
 
 
 async function fetchRecipeData(food) {
-  const url =
+  let url =
     "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/complexSearch?query=" +
     food+'&number=30';
+    url=url.replace(/ /g, "+")
 
     console.log(url)
   const options = {

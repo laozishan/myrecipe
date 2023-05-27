@@ -502,7 +502,7 @@
         );
       }
 
-      // 生成食物元素并添加到游戏容器中
+      //generate food randomly
       function generateFoodItems() {
         for (let i = 0; i < foods.length; i++) {
           const food = document.createElement("div");
@@ -516,7 +516,7 @@
         }
       }
 
-      // 监听键盘按下事件
+      // add key down event listener
       document.addEventListener("keydown", handleKeyDown);
 
       const startBtn = document.getElementById("startBtn");
@@ -537,7 +537,7 @@
         player.style.display = "none"; // 隐藏玩家
         console.log(ingredientsList)
         finalIngredients = collectedIngredients.map((ingredient) => {
-          return ingredients[ingredient]; // 在字典中查找食材的对应值
+          return ingredients[ingredient]; // look for value in dictionary
         });
 
         console.log(finalIngredients);
@@ -547,14 +547,13 @@
       function hideIngredientsModal() {
         // Hide the ingredients modal
         ingredientsModal.style.display = "none";
-        player.style.display = "block"; // 显示玩家
+        player.style.display = "block"; 
       }
 
 
 
       function updateTimer() {
-        timer.textContent = `Countdown
-: ${timeLeft}s`;
+        timer.textContent = `Countdown: ${timeLeft}s`;
 
         if (timeLeft === 0) {
           clearInterval(gameTimer);
@@ -565,11 +564,11 @@
       }
 
       function restartGame() {
-        collectedIngredients.length = 0; // 清空collectedIngredients
-        timeLeft = 10; // 重置倒计时时间
+        collectedIngredients.length = 0; // empty collectedIngredients
+        timeLeft = 10; // reset timer
         hideIngredientsModal();
         gameTimer = setInterval(updateTimer, 1000);
-        // 清空上一轮游戏的食材
+        // empty ingredients left from last round
         for (const food of foodItems) {
           food.remove();
         }
@@ -618,14 +617,6 @@
       
       
       
-      
-      
-      
-      
-      
-      
-
-
 
 
 
@@ -639,7 +630,7 @@ async function fetchRecipeData(food) {
   const options = {
     method: "GET",
     headers: {
-      "X-RapidAPI-Key": "0ea6aa2962mshf9120b6d8aad583p189182jsn145a03b81325",
+      "X-RapidAPI-Key": "2d57ba9cd8msh431eabb6020cee0p166caejsnc0d264b00f3d",
       "X-RapidAPI-Host": "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com",
     },
   };
@@ -656,18 +647,16 @@ async function fetchRecipeData(food) {
 }
 
 function displayRecipes(recipeData,divName) {
-  // 清空之前的内容
+
   divName.innerHTML = "";
 
   if (!recipeData) {
-    // 处理请求错误的情况
     const errorElement = document.createElement("p");
     errorElement.textContent = "Cannot retrive the recipes. Please try it again";
     divName.appendChild(errorElement);
     return;
   }
 
-  // 创建 <div class="card-container"> 元素
   const cardContainer = document.createElement("div");
   cardContainer.className = "card-container";
   divName.appendChild(cardContainer);
@@ -677,23 +666,21 @@ function displayRecipes(recipeData,divName) {
   console.log("recipes:",recipes)
 
   recipes.forEach((recipe) => {
-    // 创建 <div class="card"> 元素
+
     const card = document.createElement("div");
     card.className = "card";
     cardContainer.appendChild(card);
 
-    // 创建 <div class="image-container"> 元素
+
     const imageContainer = document.createElement("div");
     imageContainer.className = "image-container";
     card.appendChild(imageContainer);
 
-    // 创建 <img> 元素
     const image = document.createElement("img");
     image.src = recipe.image;
     image.alt = recipe.title;
     imageContainer.appendChild(image);
 
-    // 创建 <p> 元素
     const pElement = document.createElement("p");
     pElement.textContent = recipe.title;
     card.appendChild(pElement);
@@ -739,23 +726,23 @@ crossorigin="anonymous"
 ></script>
 <script>
     var searchInput = document.getElementById('search-input');
-var enterButton = document.getElementById('enter-button');
+    var enterButton = document.getElementById('enter-button');
 
-searchInput.addEventListener('input', function() {
-if (searchInput.value.trim() !== '') {
-enterButton.style.display = 'block';
-} else {
-enterButton.style.display = 'none';
-}
-});
+    searchInput.addEventListener('input', function() {
+    if (searchInput.value.trim() !== '') {
+    enterButton.style.display = 'block';
+    } else {
+    enterButton.style.display = 'none';
+    }
+    });
 
 
-enterButton.addEventListener('click',function(){
-  const keyword = searchInput.value;
-  const url = `searchresult.html?keyword=${encodeURIComponent(keyword)}`;
-  window.location.href = url;
+    enterButton.addEventListener('click',function(){
+      const keyword = searchInput.value;
+      const url = `searchresult.html?keyword=${encodeURIComponent(keyword)}`;
+      window.location.href = url;
 
-})
+    })
 
 
 </script>

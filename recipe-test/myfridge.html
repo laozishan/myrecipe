@@ -279,15 +279,16 @@
       </div>
     </div>
 
-    <div style="background-color: rgb(27, 30, 23);position: absolute; top: 0; left: 0; width: 99%; height: 100%;">
-    <div style="margin-top: 4rem;"></div>
-
-    <h2 style="color: #fff;">What's out there in your fridge?</h2>
-    <div class="card-container">
-    <img id='fridgeClose' src="fridge-closed.png" alt="fridge" style="width: 50%; height: 98%;object-fit: cover;  cursor: pointer;" onclick="scrollToIngredients()">
-    <img id='fridgeOpen' src="fridge.png" alt="fridge" style="width: 50%; height: 98%;display:none; object-fit: cover;cursor: pointer; border: none;">
-</div>
-</div>
+    <div  id='background' style="background-color: rgb(27, 30, 23); position: absolute; top: 0; left: 0; width: 99vw; height: 100vh; overflow: hidden;">
+      <div style="margin-top: 4rem;"></div>
+    
+      <h2 style="color: #fff;">What's out there in your fridge?</h2>
+      <div class="card-container">
+        <img id='fridgeClose' src="fridge-closed.png" alt="fridge" style="width: 50%; height: 98%; object-fit: cover; cursor: pointer;" onclick="scrollToIngredients()">
+        <img id='fridgeOpen' src="fridge.png" alt="fridge" style="width: 50%; height: auto; max-height: 98%; display:none; object-fit: cover; cursor: pointer; border: none;">
+      </div>
+    </div>
+    
 
 <div style="margin-top: 110vh;"></div>
     <h2 id="ingredientH2">There are...</h2>
@@ -498,7 +499,7 @@ async function fetchRecipeData(food) {
   const options = {
     method: "GET",
     headers: {
-      "X-RapidAPI-Key": "0ea6aa2962mshf9120b6d8aad583p189182jsn145a03b81325",
+      "X-RapidAPI-Key": "2d57ba9cd8msh431eabb6020cee0p166caejsnc0d264b00f3d",
       "X-RapidAPI-Host": "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com",
     },
   };
@@ -532,7 +533,7 @@ function displayRecipes(recipeData,divName) {
 
   }
 
-  // 创建 <div class="card-container"> 元素
+
   const cardContainer = document.createElement("div");
   cardContainer.className = "card-container";
   divName.appendChild(cardContainer);
@@ -542,23 +543,23 @@ function displayRecipes(recipeData,divName) {
   console.log("recipes:",recipes)
 
   recipes.forEach((recipe) => {
-    // 创建 <div class="card"> 元素
+    
     const card = document.createElement("div");
     card.className = "card";
     cardContainer.appendChild(card);
 
-    // 创建 <div class="image-container"> 元素
+    
     const imageContainer = document.createElement("div");
     imageContainer.className = "image-container";
     card.appendChild(imageContainer);
 
-    // 创建 <img> 元素
+    
     const image = document.createElement("img");
     image.src = recipe.image;
     image.alt = recipe.title;
     imageContainer.appendChild(image);
 
-    // 创建 <p> 元素
+  
     const pElement = document.createElement("p");
     pElement.textContent = recipe.title;
     card.appendChild(pElement);

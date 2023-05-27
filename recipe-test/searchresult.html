@@ -229,11 +229,6 @@
           <span class="navbar-toggler-icon"></span>
         </button>
 
-        <!-- <div class="navbar-search form-control">
-          <input type="text" placeholder="Search..." />
-        </div> -->
-
-
         <div class="nav-search search-container1 me-auto " style="margin-left: 10rem; position: relative;" >
             <input
             id="search-input"
@@ -272,10 +267,10 @@
 
 <h2 id="search-title"></h2>
 <div id="search-result">
-
-
 </div>
 
+
+<h3 id="errorh2" style="display: none; background:rgb(251, 205, 33); border-radius: 10px; margin: 2rem 5rem; text-align: center; padding: 2rem;"></h3>
 
 
 
@@ -467,20 +462,7 @@
 
     </script>
 
-    <!-- <script>
-         var cardOptions = document.querySelectorAll('.card-options');
-let url
-cardOptions.forEach(function(cardOption) {
-  var input = cardOption.querySelector('input');
-  cardOption.addEventListener('click', function() {
-    var food = input.value;
-    url = "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/complexSearch?query=" + food;
-    url += "&number=30";
-    console.log(url)
-    });
-  });
 
-    </script> -->
 
 <script>
 
@@ -577,7 +559,7 @@ async function fetchRecipeData(food) {
   const options = {
     method: "GET",
     headers: {
-      "X-RapidAPI-Key": "0ea6aa2962mshf9120b6d8aad583p189182jsn145a03b81325",
+      "X-RapidAPI-Key": "2d57ba9cd8msh431eabb6020cee0p166caejsnc0d264b00f3d",
       "X-RapidAPI-Host": "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com",
     },
   };
@@ -603,6 +585,14 @@ function displayRecipes(recipeData,divName) {
     errorElement.textContent = "Cannot retrive the recipes. Please try it again";
     divName.appendChild(errorElement);
     return;
+  }
+
+
+  else if(recipeData.results.length==0){
+    errorh2.textContent = "⚠️⚠️⚠️We didn't find recipes with your keyword. Please try another keyword.";
+    errorh2.style.display ="block"
+    return;
+
   }
 
   // 创建 <div class="card-container"> 元素
@@ -635,16 +625,6 @@ function displayRecipes(recipeData,divName) {
     const pElement = document.createElement("p");
     pElement.textContent = recipe.title;
     card.appendChild(pElement);
-
-    // const hiddenInput = document.createElement("input");
-    // hiddenInput.type = "hidden";
-    // hiddenInput.value = recipe.id;
-    // card.appendChild(hiddenInput);
-
-    // const recipeLink = document.createElement("a");
-    // recipeLink.href = `detail.html?id=${recipe.id}`;
-    // recipeLink.target = "_blank";
-    // card.appendChild(recipeLink);
 
     card.addEventListener("click", (event) => {
         event.preventDefault();

@@ -30,15 +30,15 @@
         left: 0;
         width: 100%;
         height: 100px;
-        background-color: transparent; /* 起始时透明背景 */
-        transition: background-color 0.5s ease; /* 背景色渐变过渡效果 */
+        background-color: transparent; 
+        transition: background-color 0.5s ease; 
         z-index: 1;
       }
 
 
 
       .navbar.scrolled {
-        background-color: #fff; /* 滚动时变为白色 */
+        background-color: #fff; 
         box-shadow: 0 0.3rem 0.7rem rgba(0, 0, 0, 0.1);
       }
 
@@ -85,10 +85,10 @@
       }
 
       .search-container input[type="text"] {
-        height: 4.5rem; /* 调整搜索框的宽度 */
-        border-radius: 50px; /* 设置圆角 */
+        height: 4.5rem; 
+        border-radius: 50px; 
         font-size: 1.5rem;
-        box-shadow: 0 0.3rem 0.7rem rgba(0, 0, 0, 0.1); /* 添加阴影效果 */
+        box-shadow: 0 0.3rem 0.7rem rgba(0, 0, 0, 0.1); 
       }
 
       .search-container input[type="text"]::placeholder {
@@ -96,8 +96,7 @@
       }
 
       .search-container button {
-        border-radius: 50px; /* 设置按钮的圆角 */
-        width: 9rem;
+        border-radius: 50px; 
         height: 4.5rem;
         box-shadow: 0 0.3rem 0.7rem rgba(0, 0, 0, 0.1);
         font-size: larger;
@@ -155,8 +154,8 @@
 
       .search-container1 input[type="text"] {
         width: 50rem;
-        height: 3rem; /* 调整搜索框的宽度 */
-        border-radius: 50px; /* 设置圆角 */
+        height: 3rem; 
+        border-radius: 50px; 
         font-size: 1rem;
    
         box-shadow: 0.1rem 0.1rem 0.3rem rgba(0, 0, 0, 0.2); 
@@ -197,7 +196,7 @@
 
 @media (max-width: 992px) {
         .search-container {
-          display: none; /* 达到 768px 宽度以下时隐藏搜索框 */
+          display: none; 
         }
         .navbar-text {
           display: none;
@@ -246,10 +245,6 @@
         >
           <span class="navbar-toggler-icon"></span>
         </button>
-
-        <!-- <div class="navbar-search form-control">
-          <input type="text" placeholder="Search..." />
-        </div> -->
 
 
         <div class="nav-search search-container1 me-auto hide" style="position: relative;margin-left: 10rem;">
@@ -344,9 +339,9 @@
 
     <div style="background-color: rgba(251, 205, 33, 0.8);">
      
-      <div class="text-container" style="padding:  2rem 20rem 5rem 20rem;">
+      <div class="text-container" style="padding:  5% 20%;">
 
-        <h2 style="margin-top: 3rem;">About the website</h2>
+        <h2 style="margin-top: 0;">About the website</h2>
         <p>Welcome here! We're so excited to share our passion of cooking and exploring new flavors with you. Our website is designed to make your time in the kitchen more enjoyable with a variety of features that will enhance your culinary experience.
        </p>
        <h3 style="text-align: center; margin-top: 3rem;font-weight: 600;">
@@ -406,7 +401,7 @@ Join us on this culinary journey as we strive to simplify your cooking experienc
 
 
   window.addEventListener('load', function() {
-  // 滚动到页面顶部
+
   window.scrollTo({ top: 0, behavior: 'auto' });
 });
 
